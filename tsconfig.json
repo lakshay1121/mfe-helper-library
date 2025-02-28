@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "declaration": true,
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "target": "ES5",
+      "outDir": "dist",
+      "rootDir": "src",
+      "lib": ["ES2015", "DOM"],
+      "strict": true
+    },
+    "include": ["src", "webpack.d.ts"]
+  }
+  

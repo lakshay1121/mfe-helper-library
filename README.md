@@ -75,18 +75,17 @@ export class FallbackDashboardModule {}
 This prevents runtime errors and allows the host application to function even if some MFEs are offline.  
 
 ## 📌 Configuration  
-You can configure the timeout before the fallback module loads using optional settings:  
+You can dynamically load remote modules using `ModuleFederationHelper`:  
 
 ```typescript
 ModuleFederationHelper.loadRemoteModule({
   remoteEntry: 'http://localhost:4201/remoteEntry.js',
   remoteName: 'remoteApp',
-  exposedModule: './Component',
-  timeout: 5000, // Wait 5 seconds before considering the MFE down
+  exposedModule: './Component'
 }).then((component) => {
   console.log('Remote Component Loaded:', component);
 });
-
+```
 
 
 ## 🎯 Why Use mfehelper?  

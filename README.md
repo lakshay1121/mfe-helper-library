@@ -27,23 +27,27 @@ yarn add angular-mfe-helper
 In your **app.routes.ts**, use \`loadRemoteMFE\` to load remote microfrontends dynamically with a fallback UI:  
 
 ```typescript
-import { loadRemoteMFE } from 'mfehelper';
+import { ModuleFederationHelper } from 'angular-mfe-helper';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => 
-      loadRemoteMFE('mfeDashboard/Module', () => 
-        import('./fallbacks/fallback-dashboard.module')
-      ),
+      ModuleFederationHelper.loadRemoteModule({
+        remoteEntry: 'http://localhost:4201/remoteEntry.js',
+        remoteName: 'mfeDashboard',
+        exposedModule: './Module',
+      }),
   },
   {
     path: 'analytics',
     loadChildren: () => 
-      loadRemoteMFE('mfeAnalytics/Module', () => 
-        import('./fallbacks/fallback-analytics.module')
-      ),
+      ModuleFederationHelper.loadRemoteModule({
+        remoteEntry: 'http://localhost:4202/remoteEntry.js',
+        remoteName: 'mfeAnalytics',
+        exposedModule: './Module',
+      }),
   },
 ];
 ```
@@ -71,18 +75,19 @@ export class FallbackDashboardModule {}
 This prevents runtime errors and allows the host application to function even if some MFEs are offline.  
 
 ## 📌 Configuration  
-You can configure retries, timeouts, or custom logging using optional settings:  
+You can configure the timeout before the fallback module loads using optional settings:  
 
 ```typescript
-loadRemoteMFE('mfeDashboard/Module', () => 
-  import('./fallbacks/fallback-dashboard.module'), 
-  {
-    retryAttempts: 3,  // Retry fetching the remote MFE before falling back
-    timeout: 5000,      // Wait 5 seconds before considering the MFE down
-    logErrors: true,    // Log missing MFE errors to console
-  }
-);
-```
+ModuleFederationHelper.loadRemoteModule({
+  remoteEntry: 'http://localhost:4201/remoteEntry.js',
+  remoteName: 'remoteApp',
+  exposedModule: './Component',
+  timeout: 5000, // Wait 5 seconds before considering the MFE down
+}).then((component) => {
+  console.log('Remote Component Loaded:', component);
+});
+
+
 
 ## 🎯 Why Use mfehelper?  
 🚀 Prevents host app crashes when MFEs are missing  

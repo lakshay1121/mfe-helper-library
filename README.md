@@ -13,12 +13,12 @@ mfehelper ensures your Angular host application runs smoothly even if some micro
 
 ### Using npm:  
 ```sh
-npm install mfehelper
+npm install angular-mfe-helper
 ```
 
 ### Using yarn:  
 ```sh
-yarn add mfehelper
+yarn add angular-mfe-helper
 ```
 
 ## 🔧 Usage  

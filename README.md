@@ -1,4 +1,4 @@
-echo "# mfehelper 🏗 Microfrontend Helper for Angular Module Federation
+"# mfehelper 🏗 Microfrontend Helper for Angular Module Federation
 
 mfehelper ensures your Angular host application runs smoothly even if some microfrontends (MFEs) are offline or unavailable. It prevents crashes by providing a fallback UI when an MFE is down, improving resilience and user experience.
 

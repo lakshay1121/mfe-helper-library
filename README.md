@@ -1,4 +1,4 @@
- "# mfehelper 🏗 Microfrontend Helper for Angular Module Federation
+echo "# mfehelper 🏗 Microfrontend Helper for Angular Module Federation
 
 mfehelper ensures your Angular host application runs smoothly even if some microfrontends (MFEs) are offline or unavailable. It prevents crashes by providing a fallback UI when an MFE is down, improving resilience and user experience.
 
@@ -33,11 +33,17 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'dashboard',
-    loadChildren: () => loadRemoteMFE('mfeDashboard/Module', () => import('./fallbacks/fallback-dashboard.module')),
+    loadChildren: () => 
+      loadRemoteMFE('mfeDashboard/Module', () => 
+        import('./fallbacks/fallback-dashboard.module')
+      ),
   },
   {
     path: 'analytics',
-    loadChildren: () => loadRemoteMFE('mfeAnalytics/Module', () => import('./fallbacks/fallback-analytics.module')),
+    loadChildren: () => 
+      loadRemoteMFE('mfeAnalytics/Module', () => 
+        import('./fallbacks/fallback-analytics.module')
+      ),
   },
 ];
 \`\`\`
@@ -68,11 +74,14 @@ This prevents runtime errors and allows the host application to function even if
 You can configure retries, timeouts, or custom logging using optional settings:  
 
 \`\`\`typescript
-loadRemoteMFE('mfeDashboard/Module', () => import('./fallbacks/fallback-dashboard.module'), {
-  retryAttempts: 3,  // Retry fetching the remote MFE before falling back
-  timeout: 5000,      // Wait 5 seconds before considering the MFE down
-  logErrors: true,    // Log missing MFE errors to console
-});
+loadRemoteMFE('mfeDashboard/Module', () => 
+  import('./fallbacks/fallback-dashboard.module'), 
+  {
+    retryAttempts: 3,  // Retry fetching the remote MFE before falling back
+    timeout: 5000,      // Wait 5 seconds before considering the MFE down
+    logErrors: true,    // Log missing MFE errors to console
+  }
+);
 \`\`\`
 
 ## 🎯 Why Use mfehelper?  

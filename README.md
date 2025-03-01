@@ -1,4 +1,4 @@
-"# mfehelper 🏗 Microfrontend Helper for Angular Module Federation
+# mfehelper 🏗 Microfrontend Helper for Angular Module Federation
 
 mfehelper ensures your Angular host application runs smoothly even if some microfrontends (MFEs) are offline or unavailable. It prevents crashes by providing a fallback UI when an MFE is down, improving resilience and user experience.
 
@@ -12,21 +12,21 @@ mfehelper ensures your Angular host application runs smoothly even if some micro
 ## 📦 Installation  
 
 ### Using npm:  
-\`\`\`sh
+```sh
 npm install mfehelper
-\`\`\`
+```
 
 ### Using yarn:  
-\`\`\`sh
+```sh
 yarn add mfehelper
-\`\`\`
+```
 
 ## 🔧 Usage  
 
 ### 1️⃣ Wrap Remote Modules with loadRemoteMFE  
 In your **app.routes.ts**, use \`loadRemoteMFE\` to load remote microfrontends dynamically with a fallback UI:  
 
-\`\`\`typescript
+```typescript
 import { loadRemoteMFE } from 'mfehelper';
 import { Routes } from '@angular/router';
 
@@ -46,12 +46,12 @@ export const routes: Routes = [
       ),
   },
 ];
-\`\`\`
+```
 
 ### 2️⃣ Providing Fallback Components  
 If an MFE is unavailable, mfehelper will load the provided fallback module instead:
 
-\`\`\`typescript
+```typescript
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FallbackComponent } from './fallback.component';
@@ -61,7 +61,7 @@ import { FallbackComponent } from './fallback.component';
   imports: [CommonModule],
 })
 export class FallbackDashboardModule {}
-\`\`\`
+```
 
 ## 🛠 How It Works  
 1️⃣ mfehelper first checks if the remote MFE is accessible  
@@ -73,7 +73,7 @@ This prevents runtime errors and allows the host application to function even if
 ## 📌 Configuration  
 You can configure retries, timeouts, or custom logging using optional settings:  
 
-\`\`\`typescript
+```typescript
 loadRemoteMFE('mfeDashboard/Module', () => 
   import('./fallbacks/fallback-dashboard.module'), 
   {
@@ -82,7 +82,7 @@ loadRemoteMFE('mfeDashboard/Module', () =>
     logErrors: true,    // Log missing MFE errors to console
   }
 );
-\`\`\`
+```
 
 ## 🎯 Why Use mfehelper?  
 🚀 Prevents host app crashes when MFEs are missing  
